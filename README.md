@@ -1,16 +1,61 @@
-# staff_task_prototype
+# 매장 직원 업무 관리 솔루션 프로토타입 (Staff Task Prototype)
 
-A new Flutter project.
+이 프로젝트는 매장 직원 업무 관리 B2B SaaS 솔루션의 클라이언트 시연 및 기획 검증을 위해 개발된 **Flutter Web 프로토타입**입니다.
 
-## Getting Started
+## 🎯 프로젝트 목적
+- **기획 검증**: 핵심 기능(업무 리스트, 체크리스트, 상세 페이지 등)의 UI/UX가 실제 매장 환경에 적합한지 검증합니다.
+- **클라이언트 시연**: 실제 백엔드 연동 없이 Mock Data를 활용하여 완성도 높은 앱 동작을 시연합니다.
+- **베이스 코드 확보**: 검증된 UI 컴포넌트와 상태 관리 구조를 추후 실제 제품 개발(`taskmanager`)의 기반으로 활용합니다.
 
-This project is a starting point for a Flutter application.
+## ✨ 주요 기능
 
-A few resources to get you started if this is your first Flutter project:
+### 1. 인증 및 가입 (Mock Auth)
+- **로그인**: ID/PW 기반의 Mock 인증 (프로토타입이므로 모든 입력에 대해 성공 처리).
+- **회원가입**: 약관 동의, 본인 인증, 정보 입력, 가입 완료로 이어지는 4단계 위저드 UI.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 2. 홈 대시보드
+- **인사말 헤더**: 사용자 이름과 시간대에 따른 맞춤 인사말 표시.
+- **업무 요약**: 오늘 처리해야 할 업무 건수와 상태(Alert)를 한눈에 확인.
+- **퀵 메뉴**: 내 업무, 출퇴근, 스케줄, OJT 등 주요 기능으로 즉시 이동.
+- **의견 보내기**: 현장에서 관리자에게 즉각적인 피드백을 보낼 수 있는 입력 공간.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 3. 업무 관리 (My Task)
+- **전체 진행률**: 프로그레스 바를 통해 오늘의 업무 달성도 표시.
+- **데일리 체크리스트**: 루틴 업무를 위한 바텀 시트. 
+  - 완료되지 않은 업무 우선 정렬.
+  - **사진 인증**: 단순 체크 외에 사진 촬영/업로드가 필요한 항목 지원.
+- **할당된 업무**: 우선순위(긴급, 보통, 여유) 태그가 포함된 업무 리스트 및 상세 정보 확인.
+
+### 4. 업무 상세 및 소통
+- **상세 정보**: 업무 내용, 시작일, 마감일, 담당자, 라벨 등 확인.
+- **상태 변경**: '시작 전 -> 진행 중 -> 완료'의 상태 전환 지원.
+- **댓글/채팅**: 업무와 관련된 관리자와의 소통을 위한 채팅 스타일 UI.
+
+### 5. 공지사항 및 알림
+- **공지사항**: 전사/지점 공지사항 리스트 및 상세 내용 확인.
+- **알림 시스템**: 새로운 업무 배정이나 공지 등록 시 알림 확인 공간.
+
+## 🛠 기술 스택 및 구조
+- **Framework**: Flutter (Web)
+- **State Management**: **Riverpod**를 사용하여 선언적이고 효율적인 상태 관리 구현.
+- **Navigation**: **go_router**를 활용한 웹 URL 처리 및 화면 전환.
+- **UI Architecture**:
+  - `CommonAppBar`: 모든 화면에서 일관된 헤더 구조(프로필-제목-알림) 유지.
+  - `AppTheme`: 파스텔톤 Blue/Mint 기반의 Material 3 커스텀 테마.
+  - `AppDateUtils`: 날짜 포맷팅 로직 중앙화.
+- **Data**: 실제 API 호출 대신 `mock_data.dart`를 통한 로컬 데이터 기반 동작.
+
+## 🚀 실행 방법
+
+웹 크롬 환경에서 실행하는 것을 권장합니다.
+
+```bash
+# 기본 실행
+flutter run -d chrome
+
+# 성능 최적화 모드 (디버그 모드에서 렉이 느껴질 경우)
+flutter run -d chrome --web-renderer html
+```
+
+---
+*Copyright 2026 POPUP STUDIO PTE. LTD.*
